@@ -32,7 +32,6 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-if($uploadOk == 1) {
 echo '<pre>';
 
 // Outputs all the result of shellcommand "ls", and returns
@@ -43,6 +42,5 @@ $last_line = system('sh convert.sh '.$target_file, $retval);
 // Printing additional info
 echo '
 </pre>'
-}
 ?>
 
