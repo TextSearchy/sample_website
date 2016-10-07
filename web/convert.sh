@@ -35,7 +35,12 @@ if [ ! -d '$CONVERTED_SAVE' ]; then
 fi
 
 java -jar $PDF_TO_TEXT "$TARGET_PDF" "$CON_INTERMEDIATE" > /dev/null
-python "$SCRIPTS_DIR/ParaToSentence.py" "$CON_INTERMEDIATE" > "$CON_FINAL"
-echo "$CON_FINAL" > recents
+if [ $? -eq 0 ]; then
+	python "$SCRIPTS_DIR/ParaToSentence.py" "$CON_INTERMEDIATE" > "$CON_FINAL"
+	echo "$CON_FINAL" > recents
+	rm -f $CON_INTERMEDIATE
+	cat $CON_FINAL
+	exit 0
+fi
 rm -f $CON_INTERMEDIATE
-cat $CON_FINAL
+rm -f $TARGET_PDF
